@@ -1,6 +1,21 @@
 # Mandarino
 
-Mandarino is a next gen software for learning languages
+Mandarino is a cutting-edge language-learning platform that uses comprehensible input to help you achieve micro-fluency in Chinese. It’s engaging, interactive, and highly effective—give it a try today!
+
+How it works
+
+1. Upload content you are interested in
+2. Mandarino will analyze the content and create a custom learning plan
+3. Follow the learning plan and practice the content
+4. Mandarino will track your progress and provide feedback
+5. Repeat steps 2-4 to improve your language skills
+
+Top Featues
+
+1. AI Search
+2. BYOC (Bring Your Own Content)
+3. DynoCloze Automated Cloze-style exercises that adapt to your learning pace
+4. Analytics Track your progress and see how you're improving over time
 
 # Getting Started
 

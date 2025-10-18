@@ -118,18 +118,32 @@ export default function Header() {
           {!isLoading && (
             <>
               {!isAuthenticated ? (
-                <Link
-                  to="/login"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-                  activeProps={{
-                    className:
-                      'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-                  }}
-                >
-                  <LogIn size={20} />
-                  <span className="font-medium">Sign In</span>
-                </Link>
+                <>
+                  <Link
+                    to="/login"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
+                    activeProps={{
+                      className:
+                        'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                    }}
+                  >
+                    <LogIn size={20} />
+                    <span className="font-medium">Sign In</span>
+                  </Link>
+                  <Link
+                    to="/register"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
+                    activeProps={{
+                      className:
+                        'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                    }}
+                  >
+                    <LogIn size={20} />
+                    <span className="font-medium">Create Account</span>
+                  </Link>
+                </>
               ) : (
                 <button
                   onClick={() => {

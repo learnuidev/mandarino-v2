@@ -22,17 +22,24 @@ export default function LandingPage() {
           </p>
           <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
             Experience the next generation of secure productivity tools. 
-            Built with security and simplicity in mind.
+            Built with security and simplicity in mind. Sign in to access your workspace or create a new account to get started.
           </p>
           <div className="flex flex-col items-center gap-4">
-            <Link to="/login">
-              <Button className="px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-cyan-500/50 text-lg">
-                Get Started
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/login">
+                <Button className="px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-cyan-500/50 text-lg">
+                  Sign In
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link to="/register">
+                <Button variant="outline" className="px-8 py-3 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white font-semibold rounded-lg transition-colors text-lg">
+                  Create Account
+                </Button>
+              </Link>
+            </div>
             <p className="text-gray-400 text-sm">
-              Sign in to access your secure workspace
+              Join thousands of users who trust Mandarino for their secure workspace
             </p>
           </div>
         </div>
@@ -97,12 +104,19 @@ export default function LandingPage() {
           <p className="text-lg text-gray-400 mb-8">
             Join thousands of users who trust Mandarino for their daily work.
           </p>
-          <Link to="/login">
-            <Button className="px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-cyan-500/50 text-lg">
-              Sign In Now
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link to="/login">
+              <Button className="px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-cyan-500/50 text-lg">
+                Sign In
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/register">
+              <Button variant="outline" className="px-8 py-3 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white font-semibold rounded-lg transition-colors text-lg">
+                Create Account
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

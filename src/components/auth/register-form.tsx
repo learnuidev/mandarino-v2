@@ -1,4 +1,5 @@
 import { useState, useId } from "react";
+import { useNavigate } from '@tanstack/react-router'
 import { useRegisterMutation } from "@/modules/auth/use-register-mutation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,6 +31,7 @@ export const RegisterForm = ({
 	const lastNameId = useId();
 	const emailId = useId();
 	const passwordId = useId();
+	const navigate = useNavigate();
 
 	const registerMutation = useRegisterMutation();
 
@@ -56,11 +58,11 @@ export const RegisterForm = ({
 				<Card className="w-full max-w-md bg-card/80 backdrop-blur-sm border-border/50 shadow-xl">
 					<CardHeader className="space-y-1 text-center">
 						<div className="flex items-center justify-center gap-2 mb-2">
-							<div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-								<div className="w-4 h-4 bg-primary-foreground rounded-sm"></div>
+							<div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+								<div className="w-4 h-4 bg-white rounded-sm"></div>
 							</div>
 							<CardTitle className="text-2xl font-semibold">
-								Mandarino
+								Registration Successful!
 							</CardTitle>
 						</div>
 						<CardDescription className="text-muted-foreground">
@@ -69,17 +71,29 @@ export const RegisterForm = ({
 					</CardHeader>
 					<CardContent className="text-center space-y-4">
 						<p className="text-sm text-muted-foreground">
-							We've sent a confirmation code to <strong>{email}</strong>. Please
-							check your email and click the confirmation link to complete your
+							We've sent a confirmation email to <strong>{email}</strong>. Please
+							check your inbox and click the confirmation link to complete your
 							registration.
 						</p>
-						<Button
-							variant="outline"
-							className="w-full"
-							onClick={() => setIsLogin(true)}
-						>
-							Back to Sign In
-						</Button>
+						<p className="text-xs text-muted-foreground">
+							Don't forget to check your spam folder if you don't see it in your inbox.
+						</p>
+						<div className="space-y-2">
+							<Button
+								variant="outline"
+								className="w-full"
+								onClick={() => setIsLogin(true)}
+							>
+								Go to Sign In
+							</Button>
+							<Button
+								variant="ghost"
+								className="w-full"
+								onClick={() => navigate({ to: '/' })}
+							>
+								Back to Home
+							</Button>
+						</div>
 					</CardContent>
 				</Card>
 			</div>

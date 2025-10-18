@@ -1,7 +1,7 @@
 import { Amplify } from "aws-amplify";
 import { env } from "../../env";
 
-console.log("ENV", env);
+
 
 const awsExports = {
 	Auth: {
