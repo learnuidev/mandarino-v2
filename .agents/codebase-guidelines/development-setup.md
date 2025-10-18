@@ -38,8 +38,9 @@ npm run check
 ## Environment Variables
 
 ### T3Env
+
 - You can use T3Env to add type safety to your environment variables.
-- Add Environment variables to the `src/env.mjs` file.
+- Add Environment variables to the `src/env.ts` file.
 - Use the environment variables in your code.
 
 #### Usage
@@ -53,6 +54,7 @@ console.log(env.VITE_APP_TITLE);
 ## Component Library
 
 ### Shadcn
+
 Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
 
 ```bash
