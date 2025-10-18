@@ -13,33 +13,90 @@ import {
   StickyNote,
   Table,
   X,
+  LogIn,
+  Shield,
+  LogOut,
+  User,
+  Loader2,
 } from 'lucide-react'
+import { useIsAuthenticatedQuery } from '@/modules/auth/use-is-authenticated.query'
+import { useSignoutMutation } from '@/modules/auth/use-signout-mutation'
+import { Button } from '@/components/ui/button'
+import { useNavigate } from '@tanstack/react-router'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [groupedExpanded, setGroupedExpanded] = useState<
     Record<string, boolean>
   >({})
+  const navigate = useNavigate()
+  const { data: isAuthenticated, isLoading } = useIsAuthenticatedQuery()
+  const signoutMutation = useSignoutMutation()
+
+  const handleSignOut = async () => {
+    try {
+      await signoutMutation.mutateAsync()
+      navigate({ to: '/auth' })
+    } catch (error) {
+      console.error('Sign out error:', error)
+    }
+  }
 
   return (
     <>
-      <header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-          aria-label="Open menu"
-        >
-          <Menu size={24} />
-        </button>
-        <h1 className="ml-4 text-xl font-semibold">
-          <Link to="/">
-            <img
-              src="/tanstack-word-logo-white.svg"
-              alt="TanStack Logo"
-              className="h-10"
-            />
-          </Link>
-        </h1>
+      <header className="p-4 flex items-center justify-between bg-gray-800 text-white shadow-lg">
+        <div className="flex items-center">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+            aria-label="Open menu"
+          >
+            <Menu size={24} />
+          </button>
+          <h1 className="ml-4 text-xl font-semibold">
+            <Link to="/">
+              <img
+                src="/tanstack-word-logo-white.svg"
+                alt="TanStack Logo"
+                className="h-10"
+              />
+            </Link>
+          </h1>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          {isLoading ? (
+            <Button variant="ghost" size="sm" disabled>
+              <Loader2 className="h-4 w-4 animate-spin" />
+            </Button>
+          ) : isAuthenticated ? (
+            <>
+              <Link to="/protected">
+                <Button variant="ghost" size="sm">
+                  <Shield className="h-4 w-4" />
+                </Button>
+              </Link>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={handleSignOut}
+                disabled={signoutMutation.isPending}
+              >
+                {signoutMutation.isPending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <LogOut className="h-4 w-4" />
+                )}
+              </Button>
+            </>
+          ) : (
+            <Link to="/auth">
+              <Button variant="ghost" size="sm">
+                <LogIn className="h-4 w-4" />
+              </Button>
+            </Link>
+          )}
+        </div>
       </header>
 
       <aside
@@ -71,6 +128,61 @@ export default function Header() {
             <Home size={20} />
             <span className="font-medium">Home</span>
           </Link>
+
+          {/* Authentication Links */}
+          <div className="border-b border-gray-700 my-4"></div>
+          
+          {!isLoading && (
+            <>
+              {!isAuthenticated ? (
+                <Link
+                  to="/auth"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
+                  activeProps={{
+                    className:
+                      'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                  }}
+                >
+                  <LogIn size={20} />
+                  <span className="font-medium">Sign In</span>
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    to="/protected"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
+                    activeProps={{
+                      className:
+                        'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+                    }}
+                  >
+                    <Shield size={20} />
+                    <span className="font-medium">Protected Page</span>
+                  </Link>
+                  
+                  <button
+                    onClick={() => {
+                      handleSignOut()
+                      setIsOpen(false)
+                    }}
+                    className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
+                    disabled={signoutMutation.isPending}
+                  >
+                    {signoutMutation.isPending ? (
+                      <Loader2 size={20} className="animate-spin" />
+                    ) : (
+                      <LogOut size={20} />
+                    )}
+                    <span className="font-medium">Sign Out</span>
+                  </button>
+                </>
+              )}
+            </>
+          )}
+
+          <div className="border-b border-gray-700 my-4"></div>
 
           {/* Demo Links Start */}
 

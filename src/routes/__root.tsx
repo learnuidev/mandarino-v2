@@ -12,6 +12,8 @@ import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
 import appCss from '../styles.css?url'
 
+import '@/lib/aws-amplify/aws-exports'
+
 import type { QueryClient } from '@tanstack/react-query'
 
 interface MyRouterContext {
