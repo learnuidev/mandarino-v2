@@ -1,0 +1,22 @@
+{
+  "projectName": "mandarino-v2",
+  "mode": "file-router",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "npm",
+  "addOnOptions": {},
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "biome",
+    "netlify",
+    "tanstack-query",
+    "start",
+    "t3env",
+    "table",
+    "shadcn",
+    "form",
+    "db"
+  ]
+}
