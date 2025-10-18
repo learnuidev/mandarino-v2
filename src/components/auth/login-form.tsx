@@ -1,4 +1,5 @@
 import { useState, useId } from "react";
+import { useNavigate } from '@tanstack/react-router'
 import { useLoginMutation } from "@/modules/auth/use-login-mutation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,6 +27,7 @@ export const LoginForm = ({
 	const [loginError, setLoginError] = useState<string | null>(null);
 	const emailId = useId();
 	const passwordId = useId();
+	const navigate = useNavigate();
 
 	const loginMutation = useLoginMutation();
 
@@ -35,6 +37,8 @@ export const LoginForm = ({
 
 		try {
 			await loginMutation.mutateAsync({ email, password });
+			// Navigate to home page after successful login
+			navigate({ to: '/' });
 		} catch (error) {
 			const loginErr = error as LoginError;
 			setLoginError(loginErr.message);
