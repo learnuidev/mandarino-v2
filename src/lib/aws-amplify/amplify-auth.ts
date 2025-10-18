@@ -1,13 +1,12 @@
 import { fetchAuthSession, getCurrentUser } from "@aws-amplify/auth";
 import { cognitoUserPoolsTokenProvider } from "@aws-amplify/auth/cognito";
 import {
+	confirmResetPassword as confirmResetPasswordAmplify,
+	confirmSignUp as confirmSignUpAmplify,
+	resetPassword as resetPasswordAmplify,
 	signIn as signInAmplify,
 	signOut as signOutAmplify,
 	signUp as signUpAmplify,
-	confirmSignUp as confirmSignUpAmplify,
-	resetPassword as resetPasswordAmplify,
-	confirmResetPassword as confirmResetPasswordAmplify,
-	AuthError,
 } from "aws-amplify/auth";
 
 export async function getAmplifyIsAuthenticated() {
